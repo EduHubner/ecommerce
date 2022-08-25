@@ -5,6 +5,16 @@
 #divnav {
 
 }
-#divm {
+#div2 {
+    background-color: aqua;
+    width: 25%;
+    height: 100px;
+    float: left;
+}
+#div3 {
+    width: 75%;
+    background-color: brown;
+    float: right;
+    
     
 }
