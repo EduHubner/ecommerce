@@ -14,35 +14,21 @@
     <link rel="stylesheet" type="text/css" href="estilos.css">
   </head>
   <body>
-    <div class="container">
-        <div id="div1">Lojinha do Edu</div>
+    <div>
+        <div id="divtop">Lojinha do Edu</div>
         <div id="divnav">
             <?php include "navbar.php"; ?>
         </div>
-        <div id="div2">
-            <h3>Categorias</h3>
-            <br>
-            <nav class="navbar navbar-expand-lg" id="nav2">
-                <div class="container-fluid">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                        </li>
-                    </ul>
-                    </div>
-                </div>
-            </nav>
+        <div id="divcat">
+            <h4>Categorias</h4>
+            <?php
+                $categorias = $conn->prepare("SELECT ca.id, ca.descricao FROM categorias ca");
+                $categorias->execute();
+                foreach ($categorias as $linhacategorias){ ?>
+                    <a href="?pagina=<?php echo $linhacategorias['id']; ?>" class="nav-link active" aria-current="page"><?php echo $linhacategorias['descricao']; ?></a>
+                <?php } ?>
         </div>
-        <div id="div3">
+        <div id="divpag">
             <?php
                 if (isset($_GET['pagina'])) {
                     $consulta = $conn->prepare("SELECT url FROM paginas where id = :id");
@@ -56,6 +42,9 @@
                     include "home.php";
                 }
             ?>
+        </div>
+        <div id="divrod">
+            fadpfmafa
         </div>
     </div>
     

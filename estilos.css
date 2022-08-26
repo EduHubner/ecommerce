@@ -1,20 +1,23 @@
-#div1 {
-    background-color: blue;
-
+#divtop {
+    background-color: rgb(138, 138, 138);
+    height: 70px;
+    text-align: center;
 }
 #divnav {
-
+    background-color: rgb(255, 255, 255);
 }
-#div2 {
-    background-color: aqua;
-    width: 25%;
-    height: 100px;
+#divcat {
+    background-color: rgb(160, 160, 160) ;
+    width: 20%;
     float: left;
 }
-#div3 {
-    width: 75%;
-    background-color: brown;
+#divpag {
+    width: 80%;
+    background-color: rgb(194, 194, 194);
     float: right;
-    
-    
 }
+#divrod {
+    background-color: black;
+    width: 100%;
+}
+
