@@ -12,6 +12,7 @@
     <title>Commerce</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="estilos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   <body>
     <div>
@@ -22,10 +23,22 @@
         <div id="divcat">
             <h4>Categorias</h4>
             <?php
-                $categorias = $conn->prepare("SELECT ca.id, ca.descricao FROM categorias ca");
-                $categorias->execute();
-                foreach ($categorias as $linhacategorias){ ?>
-                    <a href="?pagina=<?php echo $linhacategorias['id']; ?>" class="nav-link active" aria-current="page"><?php echo $linhacategorias['descricao']; ?></a>
+                $categorias_pai = $conn->prepare("SELECT ca.id, ca.descricao FROM categorias ca where categoria_pai = 0");
+                $categorias_pai->execute();
+                foreach($categorias_pai as $linhacategorias_pai) { ?>
+                    <form method="post">
+                        <input type="hidden" name="hidcategoriaPai" value="<?php echo $linhacategorias_pai['id']; ?>">
+                        <input type="submit" name="categoriaPai" class="nav-link active" aria-current="page" value="<?php echo $linhacategorias_pai['descricao']; ?>">
+                        <?php 
+                            if(isset($_POST['hidcategoriaPai'])) {
+                                $categorias = $conn->prepare("SELECT ca.id, ca.descricao FROM categorias ca where categoria_pai = :categoria_pai");
+                                $categorias->execute(array('categoria_pai' => $_POST['hidcategoriaPai']));
+                                foreach ($categorias as $linhacategorias){ ?>
+                                    <a href="?pagina=produtos&id=<?php echo $linhacategorias['id']; ?>" class="nav-link active" aria-current="page"><?php echo $linhacategorias['descricao']; ?></a>
+                                <?php } ?>
+                            <?php } 
+                        ?>
+                    </form>
                 <?php } ?>
         </div>
         <div id="divpag">

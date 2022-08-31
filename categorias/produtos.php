@@ -1,5 +1,6 @@
 <?php
-    $lista = $conn->query("SELECT p.imagem, p.descricao, p.valor, p.resumo FROM produtos p");
+    $lista = $conn->prepare("SELECT p.imagem, p.descricao, p.valor, p.resumo FROM produtos p where categoria_id = :id");
+    $lista->execute(array('id' => $_GET['id']));
 ?>
 
 
