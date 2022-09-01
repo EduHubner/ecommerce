@@ -31,11 +31,13 @@
                         <input type="submit" name="categoriaPai" class="nav-link active" aria-current="page" value="<?php echo $linhacategorias_pai['descricao']; ?>">
                         <?php 
                             if(isset($_POST['hidcategoriaPai'])) {
-                                $categorias = $conn->prepare("SELECT ca.id, ca.descricao FROM categorias ca where categoria_pai = :categoria_pai");
+                                $categorias = $conn->prepare("SELECT ca.id, ca.descricao, ca.categoria_pai FROM categorias ca where categoria_pai = :categoria_pai");
                                 $categorias->execute(array('categoria_pai' => $_POST['hidcategoriaPai']));
-                                foreach ($categorias as $linhacategorias){ ?>
-                                    <a href="?pagina=produtos&id=<?php echo $linhacategorias['id']; ?>" class="nav-link active" aria-current="page"><?php echo $linhacategorias['descricao']; ?></a>
-                                <?php } ?>
+                                foreach ($categorias as $linhacategorias){ 
+                                    if ($linhacategorias['categoria_pai'] == $linhacategorias_pai['id']) {?>
+                                        <a href="?pagina=produtos&id=<?php echo $linhacategorias['id']; ?>" class="nav-link active" aria-current="page"><?php echo $linhacategorias['descricao']; ?></a>
+                                    <?php } 
+                                } ?>
                             <?php } 
                         ?>
                     </form>

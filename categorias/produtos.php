@@ -4,21 +4,15 @@
 ?>
 
 
-<table>
-    <tr>
-        <td>
-            <div>
-                <table>
-                    <?php foreach($lista as $coluna) { ?>
-                    <tr><img src="<?php echo $coluna['imagem']; ?>" class="img-thumbnail"></tr>
-                    <tr><?php echo $coluna['descricao']; ?></tr>
-                    <tr><?php echo $coluna['valor']; ?></tr>
-                    <tr><?php echo $coluna['resumo']; ?></tr>
-                    <?php } ?>
-                </table>
-            </div>
-        </td>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
+
+<?php foreach($lista as $coluna) { ?>
+    <div class="card" style="width: 18rem;">
+        <img src="<?php echo $coluna['imagem']; ?>" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title"><?php echo $coluna['descricao']; ?></h5>
+            <h5 class="card-title">R$<?php echo $coluna['valor']; ?>,00</h5>
+            <p class="card-text"><?php echo $coluna['resumo']; ?></p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+<?php } ?>
