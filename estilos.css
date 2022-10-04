@@ -30,4 +30,12 @@
 div.card {
 
 }
-
+#img {
+    width: 300px;
+}
+.margincat {
+    margin-left: 20px;
+}
+.cat:hover{
+    background-color: aliceblue;
+}

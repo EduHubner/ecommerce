@@ -1,6 +1,6 @@
 <?php
-    $lista = $conn->prepare("SELECT p.imagem, p.descricao, p.valor, p.resumo FROM produtos p where categoria_id = :id");
-    $lista->execute(array('id' => $_GET['id']));
+    $lista = $conn->prepare("SELECT p.id, p.imagem, p.descricao, p.valor, p.resumo FROM produtos p where categoria_id = :id");
+    $lista->execute(array('id' => $_GET['cat_id']));
 ?>
 
 
@@ -12,7 +12,7 @@
             <h5 class="card-title"><?php echo $coluna['descricao']; ?></h5>
             <h5 class="card-title">R$<?php echo $coluna['valor']; ?>,00</h5>
             <p class="card-text"><?php echo $coluna['resumo']; ?></p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <a href="?pagina=produtos&id=<?php echo $coluna['id']; ?>" class="btn btn-primary">Veja Mais</a>
         </div>
     </div>
 <?php } ?>

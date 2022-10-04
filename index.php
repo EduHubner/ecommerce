@@ -16,18 +16,18 @@
   </head>
   <body>
     <div>
-        <div id="divtop">Lojinha do Edu</div>
+        <div id="divtop">Lojinha do Edu</div> <!--top-->
         <div id="divnav">
             <?php include "navbar.php"; ?>
         </div>
-        <div id="divcat">
-            <h4>Categorias</h4>
+        <div id="divcat"> <!--categorias-->
+            <h4 class="margincat">Categorias</h4>
             <?php
                 $categorias_pai = $conn->prepare("SELECT ca.id, ca.descricao FROM categorias ca where categoria_pai = 0");
                 $categorias_pai->execute();
                 foreach($categorias_pai as $linhacategorias_pai) { ?>
                     <form method="post">
-                        <input type="hidden" name="hidcategoriaPai" value="<?php echo $linhacategorias_pai['id']; ?>">
+                        <input type="hidden" class="margincat" name="hidcategoriaPai" value="<?php echo $linhacategorias_pai['id']; ?>">
                         <input type="submit" name="categoriaPai" class="nav-link active" aria-current="page" value="<?php echo $linhacategorias_pai['descricao']; ?>">
                         <?php 
                             if(isset($_POST['hidcategoriaPai'])) {
@@ -35,7 +35,7 @@
                                 $categorias->execute(array('categoria_pai' => $_POST['hidcategoriaPai']));
                                 foreach ($categorias as $linhacategorias){ 
                                     if ($linhacategorias['categoria_pai'] == $linhacategorias_pai['id']) {?>
-                                        <a href="?pagina=produtos&id=<?php echo $linhacategorias['id']; ?>" class="nav-link active" aria-current="page"><?php echo $linhacategorias['descricao']; ?></a>
+                                        <a href="?pagina=categorias_produtos&cat_id=<?php echo $linhacategorias['id']; ?>" class="nav-link active margincat cat" aria-current="page"><?php echo $linhacategorias['descricao']; ?></a>
                                     <?php } 
                                 } ?>
                             <?php } 
@@ -43,8 +43,9 @@
                     </form>
                 <?php } ?>
         </div>
-        <div id="divpag">
+        <div id="divpag"> <!--pagina-->
             <?php
+            //if(isset($_SESSION['autenticado']) && $_SESSION['autenticado']) {
                 if (isset($_GET['pagina'])) {
                     $consulta = $conn->prepare("SELECT url FROM paginas where id = :id");
                     $resultado = $consulta->execute(array('id' => $_GET['pagina']));
@@ -56,9 +57,10 @@
                 } else {
                     include "home.php";
                 }
+            //}
             ?>
         </div>
-        <div id="divrod">
+        <div id="divrod"> <!--Rodapé-->
             fadpfmafa
         </div>
     </div>
