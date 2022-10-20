@@ -10,7 +10,7 @@
           <a class="nav-link active" aria-current="page" href="?pagina=navegacao">Navegação</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="?pagina=carrinho">Carrinho</a>
+          <a class="nav-link active" aria-current="page" href="?pagina=carrinho&id=<?php echo $_SESSION['usuaCarrinho']; ?>">Carrinho</a>
         </li>
       </ul>
       <form class="d-flex" role="search">

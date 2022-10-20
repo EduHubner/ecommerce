@@ -12,7 +12,7 @@
     <title>Produtos</title>
 </head>
 <body>
-    <form>
+    <form method="POST">
         <?php foreach($produtos as $produto) {?>
         <div>
             <div id="img">
@@ -28,10 +28,18 @@
                 <h5>R$<?php echo $produto['valor']; ?>,00</h5>
             </div>
             <div id="car">
-                <button>Carrinho</button>
+                <input type="submit" value="Carrinho" name="comprar">
             </div>
         </div>
         <?php } ?>
     </form>
+
+    <?php 
+        if(isset($_POST['comprar'])) {
+            $carrinho = $conn->prepare("INSERT into carrinho (id_usuario, id_produto) values (:usuario, :id_produto)");
+            $carrinho->execute(array('usuario' => $_SESSION['usuaCarrinho'], 'id_produto' => $_GET['id']));
+
+        }
+    ?>
 </body>
 </html>

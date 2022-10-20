@@ -39,3 +39,11 @@ div.card {
 .cat:hover{
     background-color: aliceblue;
 }
+#divfundocar {
+    background-color: rgb(231, 25, 25);
+    margin: 50px 50px 50px 50px;
+    border-radius: 10px;
+}
+#titcar {
+    text-align: center;
+}

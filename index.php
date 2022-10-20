@@ -1,5 +1,11 @@
 <?php
+    session_start();
     include "lib/conexao.php";
+    include_once("login/autenticador.php");
+
+    for($i=0;$i<=58;$i++){
+        $_SESSION['produto_'.$i] = 0;
+    }
 ?>
 
 
@@ -36,16 +42,25 @@
                                 foreach ($categorias as $linhacategorias){ 
                                     if ($linhacategorias['categoria_pai'] == $linhacategorias_pai['id']) {?>
                                         <a href="?pagina=categorias_produtos&cat_id=<?php echo $linhacategorias['id']; ?>" class="nav-link active margincat cat" aria-current="page"><?php echo $linhacategorias['descricao']; ?></a>
-                                    <?php } 
-                                } ?>
-                            <?php } 
+                                        <?php
+                                            //demostrar favorito
+                                            $_SESSION['produto_'.$linhacategorias['id']]++;
+                                            for($i=1;$i<=58;$i++){
+                                                if($_SESSION['produto_'.$i] > $_SESSION['produto_'.$i-1]){
+                                                    $_SESSION['favorito'] = $i;
+                                                }
+                                            }
+                                        ?>
+                                <?php } 
+                                } 
+                            } 
                         ?>
                     </form>
                 <?php } ?>
         </div>
         <div id="divpag"> <!--pagina-->
             <?php
-            //if(isset($_SESSION['autenticado']) && $_SESSION['autenticado']) {
+            if(isset($_SESSION['autenticado']) && $_SESSION['autenticado']) {
                 if (isset($_GET['pagina'])) {
                     $consulta = $conn->prepare("SELECT url FROM paginas where id = :id");
                     $resultado = $consulta->execute(array('id' => $_GET['pagina']));
@@ -57,7 +72,9 @@
                 } else {
                     include "home.php";
                 }
-            //}
+            } else {
+                include "login/login.php";
+            }
             ?>
         </div>
         <div id="divrod"> <!--Rodapé-->
