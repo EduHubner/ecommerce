@@ -14,17 +14,19 @@
     $lista->execute(array('id_usuario' => $_GET['id']));
     ?>
     <form method="POST">
-        <?php foreach($lista as $coluna) { ?>
-            <div class="card" style="width: 18rem;">
-                <img src="<?php echo $coluna['imagem']; ?>" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $coluna['descricao']; ?></h5>
-                    <h5 class="card-title">R$<?php echo $coluna['valor']; ?>,00</h5>
-                    <p class="card-text"><?php echo $coluna['resumo']; ?></p>
-                    <input type="hidden" name="hiddenretirar" value="<?php echo $coluna['id_car']; ?>">
-                    <input type="submit" name="retirar" value="Retirar" class="btn btn-danger">
+        <div style="display: flex;">
+            <?php foreach($lista as $coluna) { ?>
+                <div class="card" style="width: 18rem;">
+                    <img src="<?php echo $coluna['imagem']; ?>" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $coluna['descricao']; ?></h5>
+                        <h5 class="card-title">R$<?php echo $coluna['valor']; ?>,00</h5>
+                        <p class="card-text"><?php echo $coluna['resumo']; ?></p>
+                        <input type="hidden" name="hiddenretirar" value="<?php echo $coluna['id_car']; ?>">
+                        <input type="submit" name="retirar" value="Retirar" class="btn btn-danger">
+                    </div>
                 </div>
-            </div>
-        <?php } ?>
+            <?php } ?>
+        </div>
     </form>
 </div>

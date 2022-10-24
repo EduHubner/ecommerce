@@ -1,34 +1,41 @@
+
 #divtop {
-    background-color: rgb(138, 138, 138);
+    background-color: red;
     height: 70px;
     text-align: center;
+    padding-top: 40px;
+    padding-bottom: 100px;
     position: static;
+    font-size: 50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 #divnav {
     background-color: rgb(255, 255, 255);
     position: static;
 }
 #divcat {
-    background-color: rgb(160, 160, 160) ;
     width: 20%;
+    background-color: red;
     float: left;
     height: 100%;
     position: static;
+    border-radius: 10px;
+    
 }
 #divpag {
     width: 80%;
-    background-color: rgb(194, 194, 194);
+    background-color: rgb(236, 236, 236);
     float: right;
     position: static;
+    height: 100%;
+    border-radius: 10px;
 }
 #divrod {
-    background-color: black;
-    width: 100%;
-    position: static;
-    
+    background-color: rgb(196, 196, 196);
+    text-align: center;
 }
-div.card {
-
+#divtudo {
+    height: 100vh;
 }
 #img {
     width: 300px;
@@ -47,3 +54,4 @@ div.card {
 #titcar {
     text-align: center;
 }
+
